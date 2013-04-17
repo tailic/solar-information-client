@@ -32,6 +32,13 @@ class SolarInformationClient::SolarDay
     }
   end
 
+  def current_position
+    t = Time.iso8601(datetime).getlocal
+    hour = t.min > 30 ? t.hour + 1 : t.hour
+    current = solarpositions.find { |position| position.hour == hour}
+    return solarpositions.first if current.nil?
+    current
+  end
 
   def self.get_solar_day(lat, lng, datetime)
     response = Typhoeus::Request.new(
