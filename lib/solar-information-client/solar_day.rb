@@ -59,7 +59,7 @@ class SolarInformationClient::SolarDay
     puts json.inspect
     if response.success?
       puts "success calling new with json.solar_day"
-      new(json.solar_day)
+      new(json['solar_day'])
     elsif response.timed_out?
       json = { status: 'REQUEST_TIMEOUT', errors: {} }
     elsif response.code == 0
