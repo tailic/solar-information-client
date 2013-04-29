@@ -8,6 +8,8 @@ class SolarInformationClient::SolarPosition
   validates :lng, inclusion: { in: -180..180, message: 'INVALID_LONGITUDE' }
   validate :valid_iso8601_date?
 
+  self.include_root_in_json = false
+
   def initialize(attributes = {})
     if attributes
       attributes.each do |name, value|

@@ -4,6 +4,8 @@ class SolarInformationClient::SolarDay
 
   attr_accessor :solarpositions, :lat, :lng, :datetime
 
+  self.include_root_in_json = false
+
   def initialize(attributes = {})
     if attributes
       attributes.each do |name, value|
@@ -18,7 +20,7 @@ class SolarInformationClient::SolarDay
   def parse_solar_positions(solarpositions)
     positions = []
     solarpositions.each do |position|
-      positions << SolarInformationClient::SolarPosition.new(position['solar_position'])
+      positions << SolarInformationClient::SolarPosition.new(position)
     end
     positions
   end
@@ -50,7 +52,7 @@ class SolarInformationClient::SolarDay
         }).run
 
     json = Yajl::Parser.parse(response.body)
-    new(json['solar_day'])
+    new(json)
   end
 
   def self.get_solar_day_uri
