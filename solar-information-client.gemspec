@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Niklas Schreiber"]
   s.date = "2013-04-17"
-  s.description = "TODO: longer description of your gem"
+  s.description = "Client for Solar-Information-Service"
   s.email = "niklas.schreiber@haw-hamburg.de"
   s.extra_rdoc_files = [
     "LICENSE.txt",
@@ -40,7 +40,7 @@ Gem::Specification.new do |s|
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
   s.rubygems_version = "2.0.0.rc.2"
-  s.summary = "TODO: one-line summary of your gem"
+  s.summary = "Client for Solar-Information-Service"
 
   if s.respond_to? :specification_version then
     s.specification_version = 4
