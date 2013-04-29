@@ -64,9 +64,7 @@ class SolarInformationClient::SolarDay
     elsif response.code == 0
       json = { status: 'REQUEST_NO_RESPONSE', errors: { curl: response.curl_error_message } }
     elsif response.code == 400
-      new(json)
     elsif response.code == 500
-      json = Yajl::Parser.parse(response.body)
     else
       json = { status: 'REQUEST_FAILES', errors: { curl: response.code.to_s } }
     end
