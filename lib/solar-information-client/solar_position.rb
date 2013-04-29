@@ -24,9 +24,6 @@ class SolarInformationClient::SolarPosition
         'hour' => hour,
         'azimuth' => azimuth,
         'zenith' => zenith,
-        'lat' => lat,
-        'lng' => lng,
-        'datetime' => datetime
     }
   end
 
