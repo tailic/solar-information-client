@@ -50,9 +50,25 @@ class SolarInformationClient::SolarDay
             lng: lng,
             datetime: datetime
         }).run
+     handle_response(response)
+  end
 
-    json = Yajl::Parser.parse(response.body)
-    new(json)
+  def self.handle_response(response)
+    if response.success?
+      json = Yajl::Parser.parse(response.body)
+      new(json)
+    elsif response.timed_out?
+      json = { status: 'REQUEST_TIMEOUT', errors: {} }
+    elsif response.code == 0
+      json = { status: 'REQUEST_NO_RESPONSE', errors: { curl: response.curl_error_message } }
+    elsif response.code == 400
+      json = Yajl::Parser.parse(response.body)
+    elsif response.code == 500
+      json = Yajl::Parser.parse(response.body)
+    else
+      json = { status: 'REQUEST_FAILES', errors: { curl: response.code.to_s } }
+    end
+    return json
   end
 
   def self.get_solar_day_uri
