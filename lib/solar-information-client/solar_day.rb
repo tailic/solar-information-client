@@ -34,7 +34,7 @@ class SolarInformationClient::SolarDay
     }
   end
 
-  def current_position
+  def current_position(datetime)
     t = Time.iso8601(datetime).getlocal
     hour = t.min > 30 ? t.hour + 1 : t.hour
     current = solarpositions.find { |position| position.hour == hour}
