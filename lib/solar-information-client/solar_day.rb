@@ -2,7 +2,7 @@ class SolarInformationClient::SolarDay
   include ActiveModel::Serializers::JSON
   include ActiveModel::Validations
 
-  attr_accessor :solarpositions, :lat, :lng, :datetime
+  attr_accessor :solarpositions, :lat, :lng, :datetime, :date
 
   self.include_root_in_json = false
 
