@@ -35,6 +35,11 @@ class SolarInformationClient::SolarDay
     }
   end
 
+  def ok?
+    return true if status == 'OK'
+    false
+  end
+
   def current_position(datetime)
     t = Time.iso8601(datetime).getlocal
     hour = t.min > 30 ? t.hour + 1 : t.hour
