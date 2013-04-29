@@ -56,7 +56,6 @@ class SolarInformationClient::SolarDay
 
   def self.handle_response(response)
     json = Yajl::Parser.parse(response.body)
-    puts json.inspect
     if response.success?
       puts "success calling new with json.solar_day"
       new(json['solar_day'])
@@ -71,6 +70,7 @@ class SolarInformationClient::SolarDay
     else
       json = { status: 'REQUEST_FAILES', errors: { curl: response.code.to_s } }
     end
+    new(json)
   end
 
   def self.get_solar_day_uri
