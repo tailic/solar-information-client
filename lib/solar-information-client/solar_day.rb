@@ -35,11 +35,6 @@ class SolarInformationClient::SolarDay
     }
   end
 
-  def ok?
-    return true if status == 'OK'
-    false
-  end
-
   def current_position(datetime)
     t = Time.iso8601(datetime).getlocal
     hour = t.min > 30 ? t.hour + 1 : t.hour
@@ -62,7 +57,9 @@ class SolarInformationClient::SolarDay
   def self.handle_response(response)
     json = Yajl::Parser.parse(response.body)
     if response.success?
-      return new(json['solar_day'])
+      solar_day = new(json['solar_day'])
+      solar_day.status = 'OK'
+      return solar_day
     elsif response.timed_out?
       json = { status: 'REQUEST_TIMEOUT', errors: {} }
     elsif response.code == 0
