@@ -27,11 +27,11 @@ class SolarInformationClient::SolarDay
 
   def attributes
     {
-        'solarpositions' => solarpositions,
-        'lat' => lat,
-        'lng' => lng,
-        'date' => date,
-        'status' => status
+      'solarpositions' => solarpositions,
+      'lat' => lat,
+      'lng' => lng,
+      'date' => date,
+      'status' => status
     }
   end
 
@@ -73,6 +73,7 @@ class SolarInformationClient::SolarDay
     else
       json = { status: 'REQUEST_FAILES', errors: { curl: response.code.to_s } }
     end
+    puts json.inspect
     new(json)
   end
 
